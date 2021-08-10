@@ -21,5 +21,23 @@ describe("<Counter/>", () => {
     wrapper.instance().handleDecrease();
     expect(wrapper.state().number).toBe(-1);
   });
-  //shallow 는 컴포넌트 내부에 다른 리액트 컴포넌트가 있다면 렌더링 하지 않음
+
+  it("calls handleIncrease", () => {
+    //클릭 이벤트를 시뮬레이트 하고 STATE를 확인
+    const wrapper = shallow(<Counter />);
+    const plusButton = wrapper.findWhere(
+      (node) => node.type() === "button" && node.text() === "+1"
+    );
+    plusButton.simulate("click");
+    expect(wrapper.state().number).toBe(1);
+  });
+  it("calls handleDecrease", () => {
+    const wrapper = shallow(<Counter />);
+    const minusButton = wrapper.findWhere(
+      (node) => node.type() === "button" && node.text() === "-1"
+    );
+    minusButton.simulate("click");
+    const number = wrapper.find("h2");
+    expect(number.text()).toBe("-1");
+  });
 });
