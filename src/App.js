@@ -1,8 +1,12 @@
-import logo from "./logo.svg";
-import "./App.css";
+import React from "react";
+import DelayedToggle from "./DelayedToggle";
 
 function App() {
-  return <div>app</div>;
+  return (
+    <div>
+      <DelayedToggle />
+    </div>
+  );
 }
 
 export default App;
